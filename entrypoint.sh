@@ -27,6 +27,10 @@ USE_STATIC_URL=${STATIC_URL:-'/static'}
 USE_STATIC_PATH=${STATIC_PATH:-'/app/static'}
 # Get the listen port for Nginx, default to 80
 USE_LISTEN_PORT=${LISTEN_PORT:-80}
+# wsgi read/send timeouts
+USE_UWSGI_READ_TIMEOUT=${UWSGI_READ_TIMEOUT:-60}
+USE_UWSGI_SEND_TIMEOUT=${UWSGI_SEND_TIMEOUT:-60}
+
 
 # Generate Nginx config first part using the environment variables
 echo "server {
@@ -37,13 +41,15 @@ echo "server {
     location @app {
         include uwsgi_params;
         uwsgi_pass unix:///tmp/uwsgi.sock;
+        uwsgi_read_timeout ${USE_UWSGI_READ_TIMEOUT};
+        uwsgi_send_timeout ${USE_UWSGI_SEND_TIMEOUT};
     }
     location $USE_STATIC_URL {
         alias $USE_STATIC_PATH;
     }" > /etc/nginx/conf.d/nginx.conf
 
 # If STATIC_INDEX is 1, serve / with /static/index.html directly (or the static URL configured)
-if [[ $STATIC_INDEX == 1 ]] ; then 
+if [[ $STATIC_INDEX == 1 ]] ; then
 echo "    location = / {
         index $USE_STATIC_URL/index.html;
     }" >> /etc/nginx/conf.d/nginx.conf
