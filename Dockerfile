@@ -1,7 +1,7 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.7
 
 RUN apt-get update && apt-get install -y --no-install-recommends openssh-server && echo "root:Docker!" | chpasswd
-RUN apt-get update && apt-get install -y freetds-dev build-essential && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y build-essential unixodbc unixodbc-dev unixodbc-bin freetds-dev freetds-bin tdsodbc && rm -rf /var/lib/apt/lists/*
 
 COPY ./sshd_config /etc/ssh/
 COPY ./entrypoint.sh /app/
