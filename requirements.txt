@@ -1,0 +1,36 @@
+# base
+click==7.0
+Flask==1.0.2
+itsdangerous==1.1.0
+Jinja2==2.10
+MarkupSafe==1.0
+Werkzeug==0.14.1
+
+# extensions
+Flask-Babel==0.11.2
+Flask-Caching==1.4.0
+Flask-JWT-Extended==3.7.2
+Flask-Login==0.4.1
+Flask-Mail==0.9.1
+Flask-Pushjack==1.0.0
+Flask-Restful==0.3.6
+Flask-SQLAlchemy==2.3.2
+Flask-WTF==0.14.2
+
+# others
+SQLAlchemy==1.2.13
+SQLAlchemy-Utils==0.33.6
+WTForms==2.1
+WTForms-Alchemy==0.16.7
+WTForms-Components==0.10.3
+
+azure-storage==0.36.0
+inflection==0.3.1
+marshmallow==2.16.0
+marshmallow-sqlalchemy==0.14.1
+passlib==1.7.1
+pyodbc==4.0.24
+pyopenssl==18.0.0
+python-resize-image==1.1.18
+simplejson==3.16.0
+stripe==1.79.1
